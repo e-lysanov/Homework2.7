@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface EmployeeBook {
-    void addEmployee(String fullName, int salary);
+    void addEmployee(String firstName, String lastName);
 
-    void removeEmployee(String fullName);
+    void removeEmployee(String firstName, String lastName);
 
-    void findEmployee(String fullName);
+    void findEmployee(String firstName, String lastName);
 }

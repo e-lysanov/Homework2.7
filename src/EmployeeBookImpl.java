@@ -7,40 +7,43 @@ import java.util.Map;
 
 public class EmployeeBookImpl implements EmployeeBook {
 
-    public Map<String, Integer> Employees;
+    public Map<String, Employee> Employees;
 
     public EmployeeBookImpl() {
         this.Employees = new HashMap<>();
     }
 
     @Override
-    public void addEmployee(String fullName, int salary) {
+    public void addEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
         if (Employees.size() > 3) {
             throw new EmployeeStorageIsFullException("Employee storage is full");
-        } else if (Employees.containsKey(fullName)) {
-            throw new EmployeeAlreadyAddedException(fullName + " с зарплатой " + Employees.get(fullName)  + " is already added");
+        } else if (Employees.containsKey(employee.getFullName())) {
+            throw new EmployeeAlreadyAddedException(employee.getFullName() + " is already added");
         } else {
-            Employees.put(fullName, salary);
-            System.out.println(fullName + " с зарплатой " + Employees.get(fullName)  + " added");
+            Employees.put(employee.getFullName(), employee);
+            System.out.println(employee.getFullName()  + " added");
         }
     }
 
     @Override
-    public void removeEmployee(String fullName) {
-        if (Employees.containsKey(fullName)) {
-            System.out.println(fullName + " с зарплатой " + Employees.get(fullName)  + " removed");
-            Employees.remove(fullName);
+    public void removeEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
+        if (Employees.containsKey(employee.getFullName())) {
+            System.out.println(employee.getFullName()  + " removed");
+            Employees.remove(employee.getFullName());
         } else {
-            throw new EmployeeNotFoundException(fullName + " don^t finded");
+            throw new EmployeeNotFoundException(employee.getFullName() + " don^t finded");
         }
     }
 
     @Override
-    public void findEmployee(String fullName) {
-        if (Employees.containsKey(fullName)) {
-            System.out.println(fullName + " с зарплатой " + Employees.get(fullName) + " finded");
+    public void findEmployee(String firstName, String lastName) {
+        Employee employee = new Employee(firstName, lastName);
+        if (Employees.containsKey(employee.getFullName())) {
+            System.out.println(employee.getFullName() + " finded");
         } else {
-            throw new EmployeeNotFoundException(fullName + " don^t finded");
+            throw new EmployeeNotFoundException(employee.getFullName() + " don^t finded");
         }
     }
 

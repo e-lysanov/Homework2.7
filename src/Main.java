@@ -7,16 +7,14 @@ public class Main {
 
         EmployeeBookImpl Employees = new EmployeeBookImpl();
 
-//        Map<String, Integer> Employees = new HashMap<>();
+        Employees.addEmployee("Антон", "Чехов");
+        Employees.addEmployee("Лев", "Толстой");
 
-        Employees.addEmployee("Антон Чехов", 100_000);
-        Employees.addEmployee("Лев Толстой", 70_000);
+        Employees.findEmployee("Лев", "Толстой");
+        Employees.findEmployee("Антон", "Чехов");
 
-        Employees.findEmployee("Лев Толстой");
-        Employees.findEmployee("Антон Чехов");
-
-        Employees.removeEmployee("Антон Чехов");
-        Employees.findEmployee("Антон Чехов");
+        Employees.removeEmployee("Антон", "Чехов");
+        Employees.findEmployee("Антон", "Чехов");
 
     }
 }
